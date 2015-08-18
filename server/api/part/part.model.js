@@ -3,9 +3,9 @@
 var mongoose = require('bluebird').promisifyAll(require('mongoose'));
 var Schema = mongoose.Schema;
 
-var ThingSchema = new Schema({
+var PartSchema = new Schema({
+  code: String,
   name: String,
-  active: Boolean
 });
 
-module.exports = mongoose.model('Thing', ThingSchema);
+module.exports = mongoose.model('Part', PartSchema);

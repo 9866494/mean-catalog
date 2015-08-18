@@ -24,4 +24,12 @@ angular.module('meanCatalogApp')
     $scope.$on('$destroy', function() {
       socket.unsyncUpdates('thing');
     });
+
+    $scope.list = [
+      {},
+      {},
+      {},
+      {},
+      {},
+    ]
   });

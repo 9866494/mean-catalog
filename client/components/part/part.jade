@@ -1,0 +1,81 @@
+div.panel.panel-default
+  div.panel-body
+    h3
+    
+    form.form-horizontal.part-form(ng-if='expand')
+      
+      div.form-group
+        label.col-md-4.control-label
+          АРТИКУЛ
+        div.col-md-8
+          input.form-control(type='text' ng-disabled='!edit_mode' ng-model='model.code')
+      
+      div.form-group
+        label.col-md-4.control-label
+          НАИМЕНОВАНИЕ НЕМ.
+        div.col-md-8
+          input.form-control(type='text' ng-disabled='!edit_mode' ng-model='model.name_ger')
+      
+      div.form-group
+        label.col-md-4.control-label
+          НАИМЕНОВАНИЕ РУС.
+        div.col-md-8
+          input.form-control(type='text' ng-disabled='!edit_mode' ng-model='model.name_rus')
+      
+      div.form-group
+        label.col-md-4.control-label
+          КОД ПО ТН ВЭД ТС
+        div.col-md-8
+          input.form-control(type='text' ng-disabled='!edit_mode' ng-model='model.tn_code')
+      
+      div.form-group
+        label.col-md-4.control-label
+          СТРАНА ПРОИСХОЖДЕНИЯ
+        div.col-md-8
+          input.form-control(type='text' ng-disabled='!edit_mode' ng-model='model.country')
+      
+      div.form-group
+        label.col-md-4.control-label
+          ИЗГОТОВИТЕЛЬ
+        div.col-md-8
+          input.form-control(type='text' ng-disabled='!edit_mode' ng-model='model.manufacture')
+      
+      div.form-group
+        label.col-md-4.control-label
+          ТОВАРНЫЙ ЗНАК
+        div.col-md-8
+          input.form-control(type='text' ng-disabled='!edit_mode' ng-model='model.trade_mark')
+      
+      div.form-group
+        label.col-md-4.control-label
+          МОДЕЛЬ
+        div.col-md-8
+          input.form-control(type='text' ng-disabled='!edit_mode' ng-model='model.model')
+      
+      div.form-group
+        label.col-md-4.control-label
+          ОПИСАНИЕ
+        div.col-md-8
+          textarea.form-control(ng-disabled='!edit_mode' ng-model='model.description')
+      
+      div.form-group
+        label.col-md-4.control-label
+          ПРИМЕЧАНИЕ
+        div.col-md-8
+          textarea.form-control(ng-disabled='!edit_mode' ng-model='model.note')
+        
+    div.row
+      div.col-md-12
+          
+        div.btn.btn-default.btn-md.pull-right(ng-click='toggleExpand()')
+          span.glyphicon.glyphicon-chevron-up(ng-if='expand')
+          span.glyphicon.glyphicon-chevron-down(ng-if='!expand')
+        
+        div.btn.btn-default.btn-md.pull-right(ng-click='toggleEdit()' ng-if='expand && !edit_mode')
+          Изменить
+          
+        div.btn.btn-primary.btn-md.pull-right(ng-if='edit_mode')
+          Сохранить
+          
+        div.btn.btn-default.btn-md.pull-right(ng-click='toggleEdit()' ng-if='edit_mode')
+          Отмена
