@@ -1,9 +1,11 @@
 'use strict';
 var Part = require('./part.model');
+var _ = require('lodash');
 
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function(err) {
+    console.log(err)
     res.status(statusCode).send(err);
   };
 }
@@ -48,9 +50,45 @@ function removeEntity(res) {
   };
 }
 
-// Gets a list of Parts
 exports.index = function(req, res) {
-  Part.findAsync()
+  var query = {}
+
+  if (req.params.query) {
+    var regexp = new RegExp(req.params.query, "i");
+    query = {
+      $or: [
+        {code: regexp},
+        {name_rus: regexp},
+        {description: regexp},
+      ]
+    }
+  }
+
+  Part.find(query)
+    .limit(1)
+    .execAsync()
+    .then(responseWithResult(res))
+    .catch(handleError(res));
+};
+
+exports.create = function(req, res) {
+  Part.createAsync(req.body)
+    .then(responseWithResult(res, 201))
+    .catch(handleError(res));
+};
+
+exports.update = function(req, res) {
+  if (req.body._id) {
+    delete req.body._id;
+  }
+
+  if (req.body.__v) {
+    delete req.body.__v;
+  }
+
+  Part.findByIdAsync(req.params.id)
+    .then(handleEntityNotFound(res))
+    .then(saveUpdates(req.body))
     .then(responseWithResult(res))
     .catch(handleError(res));
 };

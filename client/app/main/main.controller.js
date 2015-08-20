@@ -1,35 +1,14 @@
 'use strict';
 
 angular.module('meanCatalogApp')
-  .controller('MainCtrl', function($scope, $http, socket) {
-    $scope.awesomeThings = [];
+  .controller('MainCtrl', function($scope, $http, $state) {
+    $scope.isCollapsed = true;
+    $scope.list = [];
+    $scope.query = '';
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
+    $scope.$watch('query', function() {
+      $http.get('/api/part/' + $scope.query).success(function(parts) {
+        $scope.list = parts;
+      });
     });
-
-    $scope.addThing = function() {
-      if ($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
-    };
-
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
-    };
-
-    $scope.$on('$destroy', function() {
-      socket.unsyncUpdates('thing');
-    });
-
-    $scope.list = [
-      {},
-      {},
-      {},
-      {},
-      {},
-    ]
   });

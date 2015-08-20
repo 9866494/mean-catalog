@@ -5,6 +5,9 @@ angular.module('meanCatalogApp')
     return {
       templateUrl: 'components/part/part.html',
       restrict: 'E',
+      scope: {
+        model: "="
+      },
       controller: 'PartCtrl'
     };
   });

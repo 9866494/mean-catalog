@@ -1,9 +1,10 @@
 div.panel.panel-default
   div.panel-body
     h3
+      {{model.code}} - {{model.name_rus}}({{model.country}})
     
     form.form-horizontal.part-form(ng-if='expand')
-      
+        
       div.form-group
         label.col-md-4.control-label
           АРТИКУЛ
@@ -74,7 +75,7 @@ div.panel.panel-default
         div.btn.btn-default.btn-md.pull-right(ng-click='toggleEdit()' ng-if='expand && !edit_mode')
           Изменить
           
-        div.btn.btn-primary.btn-md.pull-right(ng-if='edit_mode')
+        div.btn.btn-primary.btn-md.pull-right(ng-if='edit_mode' ng-click='save()')
           Сохранить
           
         div.btn.btn-default.btn-md.pull-right(ng-click='toggleEdit()' ng-if='edit_mode')

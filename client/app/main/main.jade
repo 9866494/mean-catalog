@@ -2,10 +2,10 @@ navbar
 
 .container
   
-  part(ng-repeat='item in list')
+  part(ng-repeat='item in list' data-model='item')
               
               
-nav(mfb-menu position='br' effect='zoomin' active-icon='glyphicon glyphicon-plus' resting-icon='glyphicon glyphicon-plus' toggling-method='click')
+nav(mfb-menu position='br' effect='zoomin' resting-icon='glyphicon glyphicon-plus' toggling-method='click')
               
 //- header#banner.hero-unit
 //-   .container

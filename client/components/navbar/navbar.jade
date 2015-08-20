@@ -1,4 +1,4 @@
-div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
+div.navbar.navbar-default.navbar-static-top
   div.container
     div.navbar-header
       button.navbar-toggle(type='button', ng-click='isCollapsed = !isCollapsed')
@@ -9,11 +9,7 @@ div.navbar.navbar-default.navbar-static-top(ng-controller='NavbarCtrl')
     div#navbar-main.navbar-collapse.collapse(collapse='isCollapsed')
       form.navbar-form.navbar-left.col-md-8
           div.form-group
-            input.form-control
-      ul.nav.navbar-nav.navbar-right
-        li
-          b
-            Фамилия И.О.
+            input.form-control(ng-model='query' ng-change='search()' placeholder="Введите артикул...")
       //- ul.nav.navbar-nav
       //-   li(ng-repeat='item in menu', ui-sref-active='active')
       //-     a(ui-sref='{{item.state}}') {{item.title}}
