@@ -82,8 +82,16 @@ exports.update = function(req, res) {
     delete req.body._id;
   }
 
-  if (req.body.__v) {
-    delete req.body.__v;
+  Part.findByIdAsync(req.params.id)
+    .then(handleEntityNotFound(res))
+    .then(saveUpdates(req.body))
+    .then(responseWithResult(res))
+    .catch(handleError(res));
+};
+
+exports.delete = function(req, res) {
+  if (req.body._id) {
+    delete req.body._id;
   }
 
   Part.findByIdAsync(req.params.id)

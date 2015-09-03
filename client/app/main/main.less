@@ -30,20 +30,80 @@
   margin-left: 15px;
 }
 
-#navbar-main {
-  form.navbar-form {
-    width: 100%;
-    .form-group, input.form-control {
-      width: inherit;
-    }
-  }
-}
-
 .part-form {
+  input,textarea {
+    .transition(all 400ms ease-in-out;);
+    resize: vertical;
+  }
+
   input[disabled], textarea[disabled] {
-    border: none;
+    border-color: transparent;
     background-color: transparent;
     box-shadow: none;
     cursor: default;
+    resize: none;
+  }
+}
+
+.part.ng-move,
+.part.ng-enter,
+.part.ng-leave {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.part.ng-leave.ng-leave-active,
+.part.ng-move,
+.part.ng-enter {
+  margin-left: -100px;
+}
+
+.part.ng-leave,
+.part.ng-move.ng-move-active,
+.part.ng-enter.ng-enter-active {
+  margin-left: 0;
+}
+
+
+.navbar-form-search  {
+  margin-left: -@navbar-padding-horizontal;
+  margin-right: -@navbar-padding-horizontal;
+  padding: 10px @navbar-padding-horizontal;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
+  @shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 0 rgba(255,255,255,.1);
+  .box-shadow(@shadow);
+
+  // Mixin behavior for optimum display
+  .form-inline();
+
+  .form-group {
+    width: 100%;
+
+    @media (max-width: @grid-float-breakpoint-max) {
+      margin-bottom: 5px;
+    }
+
+    input.form-control {
+        width: inherit;
+    }
+  }
+
+  // Vertically center in expanded, horizontal navbar
+  .navbar-vertical-align(@input-height-base);
+
+  // Undo 100% width for pull classes
+  @media (min-width: @grid-float-breakpoint) {
+    border: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    .box-shadow(none);
+
+    // Outdent the form if last child to line up with content down the page
+    &.navbar-right:last-child {
+      margin-right: -@navbar-padding-horizontal;
+    }
   }
 }

@@ -1,4 +1,4 @@
-div.panel.panel-default
+div.panel.panel-default.part-panel
   div.panel-body
     h3
       {{model.code}} - {{model.name_rus}}({{model.country}})
@@ -77,6 +77,9 @@ div.panel.panel-default
           
         div.btn.btn-primary.btn-md.pull-right(ng-if='edit_mode' ng-click='save()')
           Сохранить
+          
+        div.btn.btn-danger.btn-md.pull-right(ng-if='edit_mode' ng-click='delete()')
+          Удалить
           
         div.btn.btn-default.btn-md.pull-right(ng-click='toggleEdit()' ng-if='edit_mode')
           Отмена

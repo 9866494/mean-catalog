@@ -7,9 +7,8 @@ div.navbar.navbar-default.navbar-static-top
         span.icon-bar
 
     div#navbar-main.navbar-collapse.collapse(collapse='isCollapsed')
-      form.navbar-form.navbar-left.col-md-8
+      form.navbar-left.navbar-form-search.col-lg-8
           div.form-group
-            input.form-control(ng-model='query' ng-change='search()' placeholder="Введите артикул...")
-      //- ul.nav.navbar-nav
-      //-   li(ng-repeat='item in menu', ui-sref-active='active')
-      //-     a(ui-sref='{{item.state}}') {{item.title}}
+            input.form-control(ng-model='query' ng-change='search()' placeholder="Введите артикул...")    
+          button.btn.btn-success(type='submit') 
+            Добавить

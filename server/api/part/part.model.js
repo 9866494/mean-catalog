@@ -13,7 +13,8 @@ var PartSchema = new Schema({
   trade_mark: String,
   mode: String,
   description: String,
-  note: String
+  note: String,
+  deleted: Boolean
 });
 
 module.exports = mongoose.model('Part', PartSchema);

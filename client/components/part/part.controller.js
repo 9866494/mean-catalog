@@ -7,6 +7,10 @@ angular.module('meanCatalogApp')
         $scope.edit_mode = false;
     }
 
+    function deletingDone(res){
+        $scope.edit_mode = false;
+    }
+
     $scope.save = function() {
       if ($scope.model._id) {
         $http.put('/api/part/' + $scope.model._id, $scope.model).then(savingDone());
@@ -15,6 +19,13 @@ angular.module('meanCatalogApp')
       }
     };
 
+    $scope.delete = function() {
+      if ($scope.model._id) {
+        $http.delete('/api/part/' + $scope.model._id, $scope.model).then(deletingDone());
+      } else {
+        $http.delete('/api/part', $scope.model).then(deletingDone());
+      }
+    };
 
     $scope.edit_mode = false;
     $scope.expand = false;

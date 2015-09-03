@@ -4,10 +4,10 @@ angular.module('meanCatalogApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngAnimate',
   'btford.socket-io',
   'ui.router',
-  'ui.bootstrap',
-  'ng-mfb'
+  'ui.bootstrap'
 ])
   .config(function($stateProvider, $urlRouterProvider, $locationProvider) {
     $urlRouterProvider
