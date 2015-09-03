@@ -10,5 +10,5 @@ div.navbar.navbar-default.navbar-static-top
       form.navbar-left.navbar-form-search.col-lg-8
           div.form-group
             input.form-control(ng-model='query' ng-change='search()' placeholder="Введите артикул...")    
-          button.btn.btn-success(type='submit') 
+          button.btn.btn-success(ui-sref='parts_add({id:"add"})') 
             Добавить

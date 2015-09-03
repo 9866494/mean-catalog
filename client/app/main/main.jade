@@ -2,10 +2,10 @@ navbar
 
 .container
   
-  h4.text-center.text-muted.not-found(ng-show='list.length === 0')
+  h4.text-center.text-muted.not-found(ng-show='count === 0')
     Данные не найдены
     
   part.part(ng-repeat='item in list' data-model='item')
-  pagination(boundary-links='true' total-items='totalItems' ng-model='currentPage' class='pagination-sm pull-right' previous-text='‹' next-text='›' first-text='«' last-text='»' ng-if='list.length !== 0')
+  pagination(boundary-links='true' total-items='count' ng-model='$parent.page' items-per-page="limit" ng-change="pageChanged()" class='pagination-sm pull-right' previous-text='‹' next-text='›' first-text='«' last-text='»' ng-if='count !== 0')
 
 footer

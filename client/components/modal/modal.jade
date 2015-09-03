@@ -1,8 +1,72 @@
 .modal-header
-  button.close(ng-if='modal.dismissable', type='button', ng-click='$dismiss()') &times;
-  h4.modal-title(ng-if='modal.title', ng-bind='modal.title')
+  button.close(ng-click='close()') &times;
+  h4.modal-title
+    Запчасть
 .modal-body
-  p(ng-if='modal.text', ng-bind='modal.text')
-  div(ng-if='modal.html', ng-bind-html='modal.html')
+  form.form-horizontal.part-form
+      
+    div.form-group
+      label.col-md-4.control-label
+        АРТИКУЛ
+      div.col-md-8
+        input.form-control(type='text' ng-model='model.code')
+    
+    div.form-group
+      label.col-md-4.control-label
+        НАИМЕНОВАНИЕ НЕМ.
+      div.col-md-8
+        input.form-control(type='text' ng-model='model.name_ger')
+    
+    div.form-group
+      label.col-md-4.control-label
+        НАИМЕНОВАНИЕ РУС.
+      div.col-md-8
+        input.form-control(type='text' ng-model='model.name_rus')
+    
+    div.form-group
+      label.col-md-4.control-label
+        КОД ПО ТН ВЭД ТС
+      div.col-md-8
+        input.form-control(type='text' ng-model='model.tn_code')
+    
+    div.form-group
+      label.col-md-4.control-label
+        СТРАНА ПРОИСХОЖДЕНИЯ
+      div.col-md-8
+        input.form-control(type='text' ng-model='model.country')
+    
+    div.form-group
+      label.col-md-4.control-label
+        ИЗГОТОВИТЕЛЬ
+      div.col-md-8
+        input.form-control(type='text' ng-model='model.manufacture')
+    
+    div.form-group
+      label.col-md-4.control-label
+        ТОВАРНЫЙ ЗНАК
+      div.col-md-8
+        input.form-control(type='text' ng-model='model.trade_mark')
+    
+    div.form-group
+      label.col-md-4.control-label
+        МОДЕЛЬ
+      div.col-md-8
+        input.form-control(type='text' ng-model='model.model')
+    
+    div.form-group
+      label.col-md-4.control-label
+        ОПИСАНИЕ
+      div.col-md-8
+        textarea.form-control(ng-model='model.description')
+    
+    div.form-group
+      label.col-md-4.control-label
+        ПРИМЕЧАНИЕ
+      div.col-md-8
+        textarea.form-control(ng-model='model.note')
+
 .modal-footer
-  button.btn(ng-repeat='button in modal.buttons', ng-class='button.classes', ng-click='button.click($event)', ng-bind='button.text')
+  button.btn.btn-default(ng-click='cancel()')
+    Отмена
+  button.btn.btn-success(ng-click='ok()')
+    Сохранить

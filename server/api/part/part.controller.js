@@ -13,6 +13,7 @@ function handleError(res, statusCode) {
 function responseWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
+    console.log(entity);
     if (entity) {
       res.status(statusCode).json(entity);
     }
@@ -64,11 +65,31 @@ exports.index = function(req, res) {
     }
   }
 
+  var
+    limit = parseInt(req.params.limit),
+    page = parseInt(req.params.page),
+    skip = limit * page - limit
+    ;
+
+
+  console.log(skip);
+
   Part.find(query)
-    .limit(1)
-    .execAsync()
-    .then(responseWithResult(res))
-    .catch(handleError(res));
+    .count(function (err, count) {
+      Part.find(query)
+        .limit(limit)
+        .skip(skip)
+        .execAsync()
+        .then(function (list) {
+          var entity = {
+            count: count,
+            list: list
+          };
+          res.status(200).json(entity);
+        })
+        .catch(handleError(res));
+    })
+
 };
 
 exports.create = function(req, res) {
