@@ -26,8 +26,19 @@ module.exports = function(app) {
   app.use(methodOverride());
   app.use(cookieParser());
   app.set('appPath', path.join(config.root, 'client'));
-
+  
   if ('production' === env) {
+    app.use(function (req, res, next) {
+      var nodeSSPI = require('node-sspi');
+      var nodeSSPIObj = new nodeSSPI({
+        retrieveGroups: true
+      });
+
+      nodeSSPIObj.authenticate(req, res, function(err){
+        res.finished || next();
+      });
+    });
+
     app.use(favicon(path.join(config.root, 'client', 'favicon.ico')));
     app.use(express.static(app.get('appPath')));
     app.use(morgan('dev'));
