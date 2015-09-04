@@ -7,7 +7,8 @@ angular.module('meanCatalogApp', [
   'ngAnimate',
   'btford.socket-io',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ng-mfb'
 ])
 .config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
@@ -18,12 +19,11 @@ angular.module('meanCatalogApp', [
           templateUrl: 'app/main/main.html',
           controller: 'MainCtrl'
         })
-        .state('parts_add', {
+        .state('parts_edit', {
           url: 'parts/:id',
           parent: 'home',
           onEnter: ['$stateParams', '$state', '$modal',
             function($stateParams, $state, $modal) {
-
               $modal
                 .open({
                   templateUrl: 'components/modal/modal.html',
@@ -34,13 +34,10 @@ angular.module('meanCatalogApp', [
                   },
                   controller: 'PartModalCtrl'
                 })
-                // change route after modal result
                 .result.then(function() {
-                  // change route after clicking OK button
-                  $state.transitionTo('home');
+                  $state.transitionTo('home', $state.params, {notify:true, reload:true});
                 }, function() {
-                  // change route after clicking Cancel button or clicking background
-                  $state.transitionTo('home');
+                  $state.transitionTo('home', $state.params);
                 });
 
             }

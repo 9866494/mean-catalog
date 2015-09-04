@@ -1,72 +1,62 @@
 .modal-header
-  button.close(ng-click='close()') &times;
+  button.close(ng-click='cancel()') &times;
   h4.modal-title
     Запчасть
 .modal-body
-  form.form-horizontal.part-form
+  form.form-horizontal.part-form(name='part_form', novalidate)
       
     div.form-group
-      label.col-md-4.control-label
-        АРТИКУЛ
+      label.col-md-4.control-label АРТИКУЛ
       div.col-md-8
-        input.form-control(type='text' ng-model='model.code')
+        input.form-control(type='text' ng-model='model.code' required)
     
     div.form-group
-      label.col-md-4.control-label
-        НАИМЕНОВАНИЕ НЕМ.
+      label.col-md-4.control-label НАИМЕНОВАНИЕ НЕМ.
       div.col-md-8
         input.form-control(type='text' ng-model='model.name_ger')
     
     div.form-group
-      label.col-md-4.control-label
-        НАИМЕНОВАНИЕ РУС.
+      label.col-md-4.control-label НАИМЕНОВАНИЕ РУС.
       div.col-md-8
-        input.form-control(type='text' ng-model='model.name_rus')
+        input.form-control(type='text' ng-model='model.name_rus' required)
     
     div.form-group
-      label.col-md-4.control-label
-        КОД ПО ТН ВЭД ТС
+      label.col-md-4.control-label КОД ПО ТН ВЭД ТС
       div.col-md-8
         input.form-control(type='text' ng-model='model.tn_code')
     
     div.form-group
-      label.col-md-4.control-label
-        СТРАНА ПРОИСХОЖДЕНИЯ
+      label.col-md-4.control-label СТРАНА ПРОИСХОЖДЕНИЯ
       div.col-md-8
-        input.form-control(type='text' ng-model='model.country')
+        input.form-control(type='text' ng-model='model.country' required)
     
     div.form-group
-      label.col-md-4.control-label
-        ИЗГОТОВИТЕЛЬ
+      label.col-md-4.control-label ИЗГОТОВИТЕЛЬ
       div.col-md-8
         input.form-control(type='text' ng-model='model.manufacture')
     
     div.form-group
-      label.col-md-4.control-label
-        ТОВАРНЫЙ ЗНАК
+      label.col-md-4.control-label ТОВАРНЫЙ ЗНАК
       div.col-md-8
         input.form-control(type='text' ng-model='model.trade_mark')
     
     div.form-group
-      label.col-md-4.control-label
-        МОДЕЛЬ
+      label.col-md-4.control-label МОДЕЛЬ
       div.col-md-8
         input.form-control(type='text' ng-model='model.model')
     
     div.form-group
-      label.col-md-4.control-label
-        ОПИСАНИЕ
+      label.col-md-4.control-label ОПИСАНИЕ
       div.col-md-8
         textarea.form-control(ng-model='model.description')
     
     div.form-group
-      label.col-md-4.control-label
-        ПРИМЕЧАНИЕ
+      label.col-md-4.control-label ПРИМЕЧАНИЕ
       div.col-md-8
         textarea.form-control(ng-model='model.note')
 
 .modal-footer
   button.btn.btn-default(ng-click='cancel()')
     Отмена
-  button.btn.btn-success(ng-click='ok()')
+  button.btn.btn-success(ng-click='save(part_form)')
     Сохранить

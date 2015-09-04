@@ -51,7 +51,7 @@ function removeEntity(res) {
   };
 }
 
-exports.index = function(req, res) {
+exports.list = function(req, res) {
   var query = {}
 
   if (req.params.query) {
@@ -71,9 +71,6 @@ exports.index = function(req, res) {
     skip = limit * page - limit
     ;
 
-
-  console.log(skip);
-
   Part.find(query)
     .count(function (err, count) {
       Part.find(query)
@@ -90,6 +87,14 @@ exports.index = function(req, res) {
         .catch(handleError(res));
     })
 
+};
+
+
+exports.get = function(req, res) {
+  Part.findOne({_id: req.params.id})
+    .execAsync()
+    .then(responseWithResult(res))
+    .catch(handleError(res));
 };
 
 exports.create = function(req, res) {

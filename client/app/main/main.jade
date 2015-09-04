@@ -2,10 +2,24 @@ navbar
 
 .container
   
-  h4.text-center.text-muted.not-found(ng-show='count === 0')
-    Данные не найдены
-    
-  part.part(ng-repeat='item in list' data-model='item')
-  pagination(boundary-links='true' total-items='count' ng-model='$parent.page' items-per-page="limit" ng-change="pageChanged()" class='pagination-sm pull-right' previous-text='‹' next-text='›' first-text='«' last-text='»' ng-if='count !== 0')
+  h4.text-center.text-muted.not-found(ng-show='count === 0') Данные не найдены
+  
+  div.table-responsive
+    table.table.table-striped.noselect
+      thead
+        tr
+          th Артикул
+          th Наименование
+          th Страна
+      tbody
+        tr(ng-repeat='item in list', ng-click='select(item)', ng-dblclick='edit(item._id)', ng-class='{info: item.selected}')
+          td {{item.code}}
+          td {{item.name_rus}}
+          td {{item.country}}
 
-footer
+  pagination(boundary-links='true', total-items='count', ng-model='$parent.page', items-per-page='limit', class='pagination-sm pull-right', previous-text='‹', next-text='›', first-text='«', last-text='»', ng-if='count !== 0')  
+
+  mfb-menu(position='br' effect='fountain' active-icon='fa fa-bars' resting-icon='fa fa-bars' toggling-method='hover')
+    mfb-button.add-btn(icon='fa fa-plus' label='Добавить запчасть' ui-sref='parts_edit({id:"add"})')
+    mfb-button.remove-btn(icon='fa fa-trash' label='Удалить выбраную' ng-click='remove_selected()' ng-show='selected')
+    mfb-button.edit-btn(icon='fa fa-pencil' label='Редактировать выбраную' ng-click='edit_selected()' ng-show='selected')

@@ -7,8 +7,17 @@ div.navbar.navbar-default.navbar-static-top
         span.icon-bar
 
     div#navbar-main.navbar-collapse.collapse(collapse='isCollapsed')
-      form.navbar-left.navbar-form-search.col-lg-8
+      form.navbar-left.navbar-form-search.col-lg-10
           div.form-group
-            input.form-control(ng-model='query' ng-change='search()' placeholder="Введите артикул...")    
-          button.btn.btn-success(ui-sref='parts_add({id:"add"})') 
-            Добавить
+            div.input-group
+              input.form-control(ng-model='query' ng-change='search()' placeholder="Введите артикул...")    
+              div.input-group-btn
+                select.form-control(ng-model='limit')
+                  option 10
+                  option 50
+                  option 100
+      ul.nav.navbar-nav.navbar-right
+        li
+          a(href="#") Фамилия И.О.
+          //- button.btn.btn-success(ui-sref='parts_add({id:"add"})') 
+          //-   Добавить
