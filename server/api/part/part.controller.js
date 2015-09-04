@@ -40,23 +40,15 @@ function saveUpdates(updates) {
   };
 }
 
-function removeEntity(res) {
-  return function(entity) {
-    if (entity) {
-      return entity.removeAsync()
-        .then(function() {
-          res.status(204).end();
-        });
-    }
-  };
-}
-
 exports.list = function(req, res) {
-  var query = {}
+  var query = {
+    deleted: false
+  }
 
   if (req.params.query) {
     var regexp = new RegExp(req.params.query, "i");
     query = {
+      deleted: false,
       $or: [
         {code: regexp},
         {name_rus: regexp},
@@ -116,13 +108,9 @@ exports.update = function(req, res) {
 };
 
 exports.delete = function(req, res) {
-  if (req.body._id) {
-    delete req.body._id;
-  }
-
   Part.findByIdAsync(req.params.id)
     .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
+    .then(saveUpdates({ deleted: true}))
     .then(responseWithResult(res))
     .catch(handleError(res));
 };

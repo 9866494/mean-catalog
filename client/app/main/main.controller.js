@@ -41,6 +41,8 @@ angular.module('meanCatalogApp')
     };
 
     $scope.remove_selected = function () {
-        
+        $http.delete('/api/part/' + $scope.selected).then(function(res) {
+          loadList();
+        });
     };
   }]);

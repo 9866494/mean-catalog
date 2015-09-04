@@ -88,21 +88,26 @@
   }
 }
 
-:not(form).ng-dirty.ng-invalid, {
-  border-color: #d9534f;
-  -webkit-box-shadow: 0 0 4px #d9534f;
-  box-shadow: 0 0 4px #d9534f;
-  -webkit-animation: shake-no 0.5s linear;
-  -o-animation: shake-no 0.5s linear;
-  animation: shake-no 0.5s linear;
+
+input, select, textarea  {
+  &.ng-dirty.ng-invalid {
+    border-color: #d9534f;
+    -webkit-box-shadow: 0 0 4px #d9534f;
+    box-shadow: 0 0 4px #d9534f;
+    -webkit-animation: shake-no 0.5s linear;
+    -o-animation: shake-no 0.5s linear;
+    animation: shake-no 0.5s linear;
+  }
 }
 
-:not(form).ng-dirty.ng-valid {
-  -webkit-box-shadow: 0 0 6px #5cb85c;
-  box-shadow: 0 0 6px #5cb85c;
-  -webkit-animation: shake-yes 0.5s linear;
-  -o-animation: shake-yes 0.5s linear;
-  animation: shake-yes 0.5s linear;
+input, select, textarea {
+  &.ng-dirty.ng-valid {
+    -webkit-box-shadow: 0 0 6px #5cb85c;
+    box-shadow: 0 0 6px #5cb85c;
+    -webkit-animation: shake-yes 0.5s linear;
+    -o-animation: shake-yes 0.5s linear;
+    animation: shake-yes 0.5s linear;
+  }
 }
 
 @-webkit-keyframes shake-no {
@@ -198,9 +203,15 @@
     user-select: none;
 }
 
-.mfb-component--br .fa {
-  font-size: 24px;
-  padding: 16px;
+.mfb-component--br {
+  a:hover {
+    color: white;
+  }
+
+  .fa {
+    font-size: 24px;
+    padding: 16px;
+  }
 }
 
 .mfb-component__button--main {

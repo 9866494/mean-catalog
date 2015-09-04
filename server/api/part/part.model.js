@@ -14,7 +14,7 @@ var PartSchema = new Schema({
   mode: String,
   description: String,
   note: String,
-  deleted: Boolean
+  deleted: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('Part', PartSchema);

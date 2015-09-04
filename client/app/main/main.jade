@@ -4,7 +4,7 @@ navbar
   
   h4.text-center.text-muted.not-found(ng-show='count === 0') Данные не найдены
   
-  div.table-responsive
+  div.table-responsive(ng-hide='count === 0')
     table.table.table-striped.noselect
       thead
         tr

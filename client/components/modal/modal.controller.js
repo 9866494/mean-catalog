@@ -17,12 +17,25 @@ angular.module('meanCatalogApp')
         $scope.$close(true);
       }
 
+      $scope.validate = function (form) {
+            for (var error_type in form.$error) {
+                for (var error in form.$error[error_type]) {
+                    if (form.$error[error_type][error].$pristine && form.$error[error_type][error].$setViewValue !== undefined) {
+                        form.$error[error_type][error].$setViewValue(form.$error[error_type][error].$modelValue);
+                    }
+                }
+            }
+
+            return form.$valid; //TODO Работает только в ECMAScript >= 5 Переписать на underscore
+        }
+        ;
+
       $scope.cancel = function() {
         $scope.$dismiss();
       };
 
       $scope.save = function(form) {
-        if (form.$valid) {
+        if ($scope.validate(form)) {
           if ($scope.model._id) {
             $http.put('/api/part/' + $scope.model._id, $scope.model).then(savingDone());
           } else {
