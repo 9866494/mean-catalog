@@ -17,7 +17,7 @@ navbar
           td {{item.name_rus}}
           td {{item.country}}
 
-  pagination(boundary-links='true', total-items='count', ng-model='$parent.page', items-per-page='limit', class='pagination-sm pull-right', previous-text='‹', next-text='›', first-text='«', last-text='»', ng-if='count !== 0')  
+  pagination(boundary-links='true', total-items='count', ng-model='$parent.page', max-size='10' items-per-page='limit', class='pagination-sm pull-right', previous-text='‹', next-text='›', first-text='«', last-text='»', ng-if='count !== 0')  
 
   mfb-menu(position='br' effect='fountain' active-icon='fa fa-bars' resting-icon='fa fa-bars' toggling-method='hover')
     mfb-button.add-btn(icon='fa fa-plus' label='Добавить запчасть' ui-sref='parts_edit({id:"add"})')

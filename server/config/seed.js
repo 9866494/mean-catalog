@@ -4,7 +4,7 @@
  */
 
 'use strict';
-
+/*
 var Thing = require('../api/thing/thing.model');
 
 
@@ -40,3 +40,4 @@ Thing.find({}).removeAsync()
     });
   });
 
+*/

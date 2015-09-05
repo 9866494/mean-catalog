@@ -11,7 +11,8 @@ var PartSchema = new Schema({
   country: String,
   manufacture: String,
   trade_mark: String,
-  mode: String,
+  model: String,
+  mark: String,
   description: String,
   note: String,
   deleted: { type: Boolean, default: false }
