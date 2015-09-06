@@ -1,0 +1,22 @@
+div.navbar.navbar-default.navbar-static-top
+  div.container
+    div.navbar-header
+      button.navbar-toggle(type='button', ng-click='isCollapsed = !isCollapsed')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+
+    div#navbar-main.navbar-collapse.collapse(collapse='isCollapsed')
+      form.navbar-left.navbar-form-search.col-lg-10
+          div.form-group
+            div.input-group
+              input.form-control(ng-model='query' ng-change='search()' placeholder="Введите артикул...")    
+              div.input-group-btn
+                select.form-control(ng-model='limit')
+                  option 10
+                  option 20
+                  option 50
+                  option 100
+      //- ul.nav.navbar-nav.navbar-right
+      //-   li
+      //-     a(href="#") Фамилия И.О.
