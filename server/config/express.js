@@ -26,7 +26,7 @@ module.exports = function(app) {
   app.use(methodOverride());
   app.use(cookieParser());
   app.set('appPath', path.join(config.root, 'client'));
-  
+
   if ('production' === env) {
     app.use(function (req, res, next) {
       var nodeSSPI = require('node-sspi');

@@ -5,4 +5,9 @@ public
 client/bower_components
 dist
 /server/config/local.env.js
+mongo/*
+!mongo/.gitkeep
+mongo/db/*
+!mongo/db/
+!mongo/db/.gitkeep
 npm-debug.log
