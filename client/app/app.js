@@ -7,7 +7,8 @@ angular.module('meanCatalogApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
-  'ng-mfb'
+  'ng-mfb',
+  'angularFileUpload'
 ])
 .config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
@@ -26,6 +27,8 @@ angular.module('meanCatalogApp', [
               $modal
                 .open({
                   templateUrl: 'components/modal/modal.html',
+                  size: 'lg',
+                  backdrop: 'static',
                   resolve: {
                     id: function() {
                       return  $stateParams.id;

@@ -22,6 +22,7 @@ module.exports = function(config) {
       'client/bower_components/angular-socket-io/socket.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
       'client/bower_components/ng-mfb/src/mfb-directive.js',
+      'client/bower_components/angular-file-upload/dist/angular-file-upload.min.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'node_modules/socket.io-client/socket.io.js',

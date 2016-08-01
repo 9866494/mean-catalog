@@ -1,10 +1,10 @@
 navbar
 
 .container
-  
+
   h4.text-center.text-muted.not-found(ng-show='count === 0') Данные не найдены
-  
-  div.table-responsive(ng-hide='count === 0')
+
+  .table-responsive(ng-hide='count === 0')
     table.table.table-striped.noselect
       thead
         tr
@@ -17,7 +17,7 @@ navbar
           td {{item.name_rus}}
           td {{item.country}}
 
-  pagination(boundary-links='true', total-items='count', ng-model='$parent.page', max-size='10' items-per-page='limit', class='pagination-sm pull-right', previous-text='‹', next-text='›', first-text='«', last-text='»', ng-if='count !== 0')  
+  pagination(boundary-links='true', total-items='count', ng-model='$parent.page', max-size='10' items-per-page='limit', class='pagination-sm pull-right', previous-text='‹', next-text='›', first-text='«', last-text='»', ng-if='count !== 0')
 
   mfb-menu(position='br' effect='fountain' active-icon='fa fa-bars' resting-icon='fa fa-bars' toggling-method='hover')
     mfb-button.add-btn(icon='fa fa-plus' label='Добавить запчасть' ui-sref='parts_edit({id:"add"})')

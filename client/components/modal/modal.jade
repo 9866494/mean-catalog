@@ -1,67 +1,109 @@
 .modal-header
   button.close(ng-click='cancel()') &times;
   h4.modal-title
-    Запчасть
+  | Запчасть
 .modal-body
   form.form-horizontal.part-form(name='part_form', novalidate)
-      
-    div.form-group
+
+    .form-group
       label.col-md-4.control-label АРТИКУЛ
-      div.col-md-8
+      .col-md-8
         input.form-control(type='text' ng-model='model.code' required)
-    
-    div.form-group
+
+    .form-group
       label.col-md-4.control-label НАИМЕНОВАНИЕ НЕМ.
-      div.col-md-8
+      .col-md-8
         input.form-control(type='text' ng-model='model.name_ger')
-    
-    div.form-group
+
+    .form-group
       label.col-md-4.control-label НАИМЕНОВАНИЕ РУС.
-      div.col-md-8
+      .col-md-8
         input.form-control(type='text' ng-model='model.name_rus' required)
-    
-    div.form-group
+
+    .form-group
       label.col-md-4.control-label КОД ПО ТН ВЭД ТС
-      div.col-md-8
+      .col-md-8
         input.form-control(type='text' ng-model='model.tn_code')
-    
-    div.form-group
+
+    .form-group
       label.col-md-4.control-label СТРАНА ПРОИСХОЖДЕНИЯ
-      div.col-md-8
+      .col-md-8
         input.form-control(type='text' ng-model='model.country' required)
-    
-    div.form-group
+
+    .form-group
       label.col-md-4.control-label ИЗГОТОВИТЕЛЬ
-      div.col-md-8
+      .col-md-8
         input.form-control(type='text' ng-model='model.manufacture')
-    
-    div.form-group
+
+    .form-group
       label.col-md-4.control-label ТОВАРНЫЙ ЗНАК
-      div.col-md-8
+      .col-md-8
         input.form-control(type='text' ng-model='model.trade_mark')
-    
-    div.form-group
+
+    .form-group
       label.col-md-4.control-label МОДЕЛЬ
-      div.col-md-8
+      .col-md-8
         input.form-control(type='text' ng-model='model.model')
-    
-    div.form-group
+
+    .form-group
+      label.col-md-4.control-label ТЕХНИЧЕСКИЙ ПАСПОРТ
+      .col-md-8
+        input.form-control(type='text' ng-model='model.technical_passport')
+
+    .form-group
+      label.col-md-4.control-label Этикетка
+      .col-md-8
+        input.form-control(type='text' ng-model='model.barcode')
+
+    .form-group
       label.col-md-4.control-label МАРКА
-      div.col-md-8
+      .col-md-8
         input.form-control(type='text' ng-model='model.mark')
-    
-    div.form-group
+
+    .form-group
       label.col-md-4.control-label ОПИСАНИЕ
-      div.col-md-8
+      .col-md-8
         textarea.form-control(ng-model='model.description')
-    
-    div.form-group
+
+    .form-group
       label.col-md-4.control-label ПРИМЕЧАНИЕ
-      div.col-md-8
+      .col-md-8
         textarea.form-control(ng-model='model.note')
 
+    .form-group
+      label.col-md-4.control-label Изображения
+      .col-md-8
+        .panel.panel-default(nv-file-drop='', uploader='imageUploader' filters='fileTypeFilter')
+          .panel-body(nv-file-over='', uploader='imageUploader')
+            p Очередь загрузки: {{ imageUploader.queue.length }}
+
+            .row(ng-repeat='item in imageUploader.queue')
+              .col-md-10
+                strong(ng-class="{'text-danger': item.isError}") {{ item.file.name }}
+                  span(ng-show='imageUploader.isHTML5', nowrap='') ({{ item.file.size/1024/1024|number:2 }} MB)
+              .col-md-2.text-danger
+                .glyphicon.glyphicon-trash.pull-right(ng-click='item.remove()')
+
+          .panel-footer
+            input(type='file', nv-file-select='', uploader='imageUploader', multiple='')
+
+    .form-group
+      label.col-md-4.control-label Чертежи
+      .col-md-8
+        .panel.panel-default(nv-file-drop='', uploader='pdfUploader' filters='fileTypeFilter')
+          .panel-body(nv-file-over='', uploader='pdfUploader')
+            p Очередь загрузки: {{ pdfUploader.queue.length }}
+
+            .row(ng-repeat='item in pdfUploader.queue')
+              .col-md-10
+                strong(ng-class="{'text-danger': item.isError}") {{ item.file.name }}
+                  span(ng-show='pdfUploader.isHTML5', nowrap='') ({{ item.file.size/1024/1024|number:2 }} MB)
+              .col-md-2.text-danger
+                .glyphicon.glyphicon-trash.pull-right(ng-click='item.remove()')
+
+          .panel-footer
+            input(type='file', nv-file-select='', uploader='pdfUploader', multiple='')
+
 .modal-footer
-  button.btn.btn-default(ng-click='cancel()')
-    Отмена
-  button.btn.btn-success(ng-click='save(part_form)')
-    Сохранить
+  button.btn.btn-default(ng-click='cancel()') Отмена
+  button.btn.btn-success(ng-click='save(part_form)') Сохранить

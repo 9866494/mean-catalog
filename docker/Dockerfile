@@ -47,6 +47,6 @@ ADD ./configs/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD ./scripts/startServices /usr/bin/startServices
 RUN chmod +x /usr/bin/startServices
 
-EXPOSE 27017 5858 8080 9000
+EXPOSE 27017 5858 8080 9000 35729
 
 ENTRYPOINT ["startServices"]

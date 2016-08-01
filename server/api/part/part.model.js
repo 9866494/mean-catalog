@@ -12,6 +12,8 @@ var PartSchema = new Schema({
   manufacture: String,
   trade_mark: String,
   model: String,
+  technical_passport: String,
+  barcode: String,
   mark: String,
   description: String,
   note: String,
