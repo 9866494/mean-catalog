@@ -13,7 +13,6 @@ function handleError(res, statusCode) {
 function responseWithResult(res, statusCode) {
   statusCode = statusCode || 200;
   return function(entity) {
-    console.log(entity);
     if (entity) {
       res.status(statusCode).json(entity);
     }
@@ -32,7 +31,11 @@ function handleEntityNotFound(res) {
 
 function saveUpdates(updates) {
   return function(entity) {
+    entity.images = [];
+    entity.pdf = [];
     var updated = _.merge(entity, updates);
+    updated.markModified('images');
+    updated.markModified('pdf');
     return updated.saveAsync()
       .spread(function(updated) {
         return updated;

@@ -14,6 +14,20 @@ var cookieParser = require('cookie-parser');
 var errorHandler = require('errorhandler');
 var path = require('path');
 var config = require('./environment');
+var multer  = require('multer')
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, __dirname+'/../../client/file_uploads/');
+  },
+  filename: function (req, file, cb) {
+    console.log(file);
+    cb(null, Date.now() + path.extname(file.originalname));
+  }
+})
+
+var upload = multer({ storage: storage });
+
 
 module.exports = function(app) {
   var env = app.get('env');
@@ -26,6 +40,7 @@ module.exports = function(app) {
   app.use(methodOverride());
   app.use(cookieParser());
   app.set('appPath', path.join(config.root, 'client'));
+  app.use(upload.any());
 
   if ('production' === env) {
     app.use(function (req, res, next) {
@@ -40,7 +55,7 @@ module.exports = function(app) {
     });
 
     app.use(favicon(path.join(config.root, 'client', 'favicon.ico')));
-    app.use(express.static(app.get('appPath')));
+    app.use(express.static(path.join(app.get('appPath'), './server/file_uploads/')));
     app.use(morgan('dev'));
   }
 

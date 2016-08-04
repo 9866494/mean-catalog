@@ -75,6 +75,11 @@
       .col-md-8
         .panel.panel-default(nv-file-drop='', uploader='imageUploader' filters='fileTypeFilter')
           .panel-body(nv-file-over='', uploader='imageUploader')
+            .thumbnail(ng-repeat='image in model.images')
+              img.image(ng-src="file_uploads/{{image.filename}}")
+              .glyphicon.glyphicon-trash.pull-right.remove-image(ng-click='removeImage(image)')
+
+            hr
             p Очередь загрузки: {{ imageUploader.queue.length }}
 
             .row(ng-repeat='item in imageUploader.queue')
@@ -92,13 +97,20 @@
       .col-md-8
         .panel.panel-default(nv-file-drop='', uploader='pdfUploader' filters='fileTypeFilter')
           .panel-body(nv-file-over='', uploader='pdfUploader')
+            .row(ng-repeat='pdf in model.pdf')
+              .col-md-10
+                a(href="/file_uploads/{{pdf.filename}}", target="_blank") {{ pdf.originalname }}
+              .col-md-2
+                .glyphicon.glyphicon-trash.pull-right(ng-click='removePdf(pdf)')
+
+            hr
             p Очередь загрузки: {{ pdfUploader.queue.length }}
 
             .row(ng-repeat='item in pdfUploader.queue')
               .col-md-10
                 strong(ng-class="{'text-danger': item.isError}") {{ item.file.name }}
                   span(ng-show='pdfUploader.isHTML5', nowrap='') ({{ item.file.size/1024/1024|number:2 }} MB)
-              .col-md-2.text-danger
+              .col-md-2
                 .glyphicon.glyphicon-trash.pull-right(ng-click='item.remove()')
 
           .panel-footer

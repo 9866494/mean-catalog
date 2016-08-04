@@ -6,7 +6,7 @@ angular.module('meanCatalogApp')
       $scope.model = {};
 
       $scope.imageUploader = new FileUploader({
-        url: 'upload_image'
+        url: 'api/files/image'
       });
 
       $scope.imageUploader.filters.push({
@@ -22,7 +22,7 @@ angular.module('meanCatalogApp')
       });
 
       $scope.pdfUploader = new FileUploader({
-        url: 'upload_pdf'
+        url: 'api/files/pdf'
       });
 
       $scope.pdfUploader.filters.push({
@@ -65,16 +65,34 @@ angular.module('meanCatalogApp')
       };
 
       $scope.imageUploader.onCompleteAll = function () {
-        if (!hasErrors($scope.imageUploader.queue))
-          $scope.pdfUploader.uploadAll();
+        if (!hasErrors($scope.imageUploader.queue)) {
+          if ($scope.pdfUploader.queue.length != 0)
+            $scope.pdfUploader.uploadAll();
+          else
+            saveData();
+        }
       };
 
       $scope.imageUploader.onErrorItem = function (fileItem) {
         handleItemError(fileItem, 'изображения');
       };
 
+      $scope.imageUploader.onSuccessItem = function (fileItem, response) {
+        if (!$scope.model.images)
+          $scope.model.images = [];
+
+        $scope.model.images.push(response);
+      };
+
       $scope.pdfUploader.onErrorItem = function (fileItem) {
         handleItemError(fileItem, 'чертежа');
+      };
+
+      $scope.pdfUploader.onSuccessItem = function (fileItem, response) {
+        if (!$scope.model.pdf)
+          $scope.model.pdf = [];
+
+        $scope.model.pdf.push(response);
       };
 
       $scope.pdfUploader.onCompleteAll = function () {
@@ -103,6 +121,16 @@ angular.module('meanCatalogApp')
           $http.post('/api/part', $scope.model).then(savingDone());
         }
       }
+
+      $scope.removePdf = function (pdf) {
+        var index = $scope.model.pdf.indexOf(pdf);
+        $scope.model.pdf.splice(index, 1)
+      };
+
+      $scope.removeImage = function (image) {
+        var index = $scope.model.images.indexOf(image);
+        $scope.model.images.splice(index, 1)
+      };
 
       $scope.save = function (form) {
         if ($scope.validate(form)) {

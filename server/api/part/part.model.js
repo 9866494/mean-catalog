@@ -17,6 +17,8 @@ var PartSchema = new Schema({
   mark: String,
   description: String,
   note: String,
+  images: [],
+  pdf: [],
   deleted: { type: Boolean, default: false }
 });
 
